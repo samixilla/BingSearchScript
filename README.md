@@ -4,7 +4,7 @@ This PowerShell script performs a specified number of random searches using the 
 
 ## Usage Instructions
 
-1. Copy the raw code of the PowerShell script [from this link](<RAW_SCRIPT_LINK>) by right-clicking the link and selecting "Save link as" or "Copy link address" (depending on your browser).
+1. Copy the raw code of the PowerShell script [from this link](<https://github.com/iamsamiullah/BingSearchScript/blob/main/bingsearch.ps1>) by right-clicking the link and selecting "Save link as" or "Copy link address" (depending on your browser).
 
 2. Open a text editor (e.g., Notepad) and paste the copied raw code into a new file.
 
