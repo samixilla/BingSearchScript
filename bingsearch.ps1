@@ -1,10 +1,11 @@
 # Required Parameters
 $BingSearchURL = "https://www.bing.com/search?q="
 $NumberOfSearches = 30
-$TabLimit = 5
+$TabLimit = 6
 
-# Array of random search queries
+# Array of random search queries (150 queries)
 $SearchQueries = @(
+    "weather",
     "latest news",
     "stock price charts",
     "football news",
@@ -67,22 +68,112 @@ $SearchQueries = @(
     "financial literacy resources",
     "easy dessert recipes",
     "best time management techniques",
-    "houseplant care tips"
+    "houseplant care tips",
+    "painting techniques for beginners",
+    "classic movie recommendations",
+    "healthy lunch ideas",
+    "latest technology gadgets",
+    "best TV shows of all time",
+    "time-saving hacks",
+    "DIY woodworking projects",
+    "famous art masterpieces",
+    "effective communication skills",
+    "popular social media platforms",
+    "home renovation ideas",
+    "best online learning platforms",
+    "mindful meditation techniques",
+    "home office organization",
+    "top travel destinations in Europe",
+    "beginner's guide to coding",
+    "delicious smoothie recipes",
+    "iconic fashion designers",
+    "strategies for stress management",
+    "outdoor camping essentials",
+    "inspirational quotes",
+    "famous architecture landmarks",
+    "improving public speaking",
+    "DIY home decor on a budget",
+    "exploring national parks",
+    "historical mysteries",
+    "creative writing prompts",
+    "benefits of regular exercise",
+    "learning a musical instrument",
+    "science fiction book recommendations",
+    "best hiking gear",
+    "mindful eating practices",
+    "world's most famous landmarks",
+    "beginner's guide to photography",
+    "homemade skincare recipes",
+    "effective time management",
+    "gardening for beginners",
+    "improving interpersonal skills",
+    "essential kitchen gadgets",
+    "must-visit museums",
+    "personal finance tips",
+    "DIY craft projects",
+    "popular podcast genres",
+    "healthy dinner ideas",
+    "latest smartphone reviews",
+    "classic literature books",
+    "beginner's guide to painting",
+    "tips for remote work productivity",
+    "exploring underwater world",
+    "famous historical figures",
+    "essential hiking tips",
+    "mindfulness in daily life",
+    "home energy-saving techniques",
+    "best language learning resources",
+    "outdoor photography tips",
+    "mindful relaxation techniques",
+    "DIY home repairs",
+    "world's beautiful beaches",
+    "ancient civilizations mysteries",
+    "exploring space discoveries",
+    "simple yoga routines",
+    "classic music compositions",
+    "effective study environment",
+    "home gardening essentials",
+    "exploring different cuisines",
+    "historical events that changed the world",
+    "beginner's guide to drawing",
+    "improving digital security",
+    "creative writing strategies",
+    "self-care practices",
+    "essential travel accessories",
+    "popular board games",
+    "benefits of reading books",
+    "exploring cultural festivals",
+    "effective problem-solving techniques",
+    "home workout equipment",
+    "latest fashion collections",
+    "beginner's guide to cooking",
+    "tips for online shopping",
+    "world's wonders of nature",
+    "mindfulness exercises",
+    "DIY home organization",
+    "famous movie directors",
+	"The dark knight",
+    "War news",
+    "Energy prices analysis",
 )
 
 # Shuffle the search queries
 $ShuffledQueries = $SearchQueries | Get-Random -Count $NumberOfSearches
 
 # Perform the searches
-1..$NumberOfSearches | ForEach-Object {
-    $SearchQuery = $ShuffledQueries[$_ - 1]
+for ($i = 0; $i -lt $NumberOfSearches; $i++) {
+    $SearchQuery = $ShuffledQueries[$i]
     $SearchURL = $BingSearchURL + [Uri]::EscapeDataString($SearchQuery)
-    Start-Process -FilePath $SearchURL
     $DelaySeconds = Get-Random -Minimum 3 -Maximum 6
-    Write-Host "Delaying next search by $DelaySeconds seconds..."
+
+    # Output progress information
+    Write-Host ("Search number $($i + 1) | Executing in $($DelaySeconds) seconds...") -ForegroundColor Cyan
     Start-Sleep -Seconds $DelaySeconds
 
-    if ($_ % $TabLimit -eq 0) {
+    # Open the search URL in the default browser
+    Start-Process $SearchURL
+
+    if ($i % $TabLimit -eq ($TabLimit - 1)) {
         # Close the Microsoft Edge browser
         Stop-Process -Name "msedge" -Force
         Start-Sleep -Seconds 3
