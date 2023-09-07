@@ -154,7 +154,7 @@ $SearchQueries = @(
     "famous movie directors",
 	"The dark knight",
     "War news",
-    "Energy prices analysis",
+    "Energy prices analysis"
 )
 
 # Shuffle the search queries
